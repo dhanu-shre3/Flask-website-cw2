@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %} 
+<div class="container">
+    <section class="blog-content">
+        <h1 class="sub-head">Computational Thinking</h1>
+            <p class="blog-text">Computers cannot solve problems on their own hence it requires a human brain to come up with a simplified way to help the computer process and find a solution. Humans are clever and imaginative and make computers exciting. We tackle problems and build systems with functionality. This ability is called computational thinking. </p>
+             
+            <p class="blog-text">Computational methods and models give us the confidence to solve problems and design systems. Thinking computationally does not mean thinking and working like a computer. It requires thinking at multiple levels of abstraction.</p>
+    
+            
+            <blockquote cite="https://www.researchgate.net/publication/274309848_Computational_Thinking"><p>Computational thinking is reformulating a seemingly difficult problem into one we know how to solve, perhaps by reduction, embedding, transformation, or simulation.</p></blockquote>
+            <figcaption>—Jeannette M. Wing, <cite>Viewpoint, Computational Thinking</cite></figcaption>
+            <br>
+            <p class="blog-text">The 4 key methods of computational thinking are – <br>
+                1. Problem decomposition- wherein breaking down a complex problem into smaller bits. This allows one to clearly explain a process to another person or computer. <br>
+                2. Pattern recognition – looks for similarities in a problem that aids in making predictions or leads to shortcuts. <br>
+                3. Abstraction- gaining insight from relevant information. This allows us to represent an idea in general terms so that we can use it to solve other problems. <br>
+                4. Algorithms – arranging this problem in a step-by-step manner to reach a solution. <br>
+                Being able to think computationally will enable us to provide exactly what the computer needs to do. 
+            </p>
+            <br>
+            <p class="blog-text">Computer science is not present physically as software or hardware everywhere. It is the computational concepts we use to solve problems manage our daily lives, and communicate and interact with other people. Thinking computationally is intellectually challenging and engaging. The problem and solution are only limited to our own curiosity and creativity.
+                Thinking computationally also helps in our career as software developer who has to constantly bring new ideas and solution with creativity and logic. When we apply this method frequently in our daily thinking, it helps with logical reasoning. That means, making predictions, reasoning logically and making deductions from the information available, and recognizing patterns in complex issues. </p>
+
+    </section>
+    <section>
+        <div class="blog-content">
+            <p>Comment</p>
+            <form name="Comment">
+                <textarea name="comment" rows="6" placeholder="Your Comment"></textarea>
+                {% if user.is_authenticated %}
+                <button type="submit" class="btn btn2">Submit</button>
+                {% else %}
+                <button type="submit" class="btn btn2"><a href="{{ url_for('login') }}">Login</a></button>
+                <button type="submit" class="btn btn2"><a href="{{ url_for('signup') }}">Signup</a></button>
+                {% endif %}
+    
+            </form>
+        </div>
+    
+    </section>
+    
+    </div>
+    
+    </div>
+
+    
+{% endblock content %} 

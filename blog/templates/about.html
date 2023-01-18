@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-2">
+                <h1 class="sub-title">About me</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet, nunc ut sollicitudin ultricies,  </p>
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+
+
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>Programming Language</span><br>JavaScript, Python</li>
+                        <li><span>Web</span><br>HTML, CSS</li>
+                        <li><span>Frameworks</span><br>Flask</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="experience">
+                    <ul>
+                        <li><span>current</span><br>STEM Ambassador @COMSC cardiff university</li>
+                        <li><span>May 2022-Aug 2022</span><br>Alt text writer @Straive</li>
+                        <li><span>Nov '21-Feb '21</span><br>Public Relations Intern</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>current</span><br>MSc Computing @Cardiff University</li>
+                        <li><span>2018-2021</span><br>BSc Psychology @Bangalore University(Jyoti Nivas College)</li>
+                    </ul>
+                </div>
+
+
+            </div> <!--text-->
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
