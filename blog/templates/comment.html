@@ -1,0 +1,47 @@
+{% extends "blogpost1.html" %}
+
+ <h1 align="center">{% block header %}Comments{% endblock %}</h1>
+ <div id="posts">
+   {% for post in posts %}
+   <div class="content">
+     <div class="card-header d-flex justify-content-between align-items-center">
+       <a href="/posts/{{post.user.username}}">{{post.user.username}}</a>
+       {% if user.id == post.author %}
+       <div class="btn-group">
+         <button
+           type="button"
+           class="btn btn-sm btn-primary dropdown-toggle"
+           data-bs-toggle="dropdown"
+         ></button>
+         <ul class="dropdown-menu">
+           <li>
+             <a href="/delete-post/{{post.id}}" class="dropdown-item">Delete</a>
+           </li>
+         </ul>
+       </div>
+       {% endif %}
+     </div>
+     <div class="card-body">
+       <div class="card-text">{{post.text}}</div>
+     </div>
+     <div class="card-footer text-muted">{{post.date_created}}</div>
+   </div>
+   <br > {% endfor %}
+ </div>
+
+ <div align="center">
+   <a href="/create_post"
+     >
+     <button type="button" class="btn btn2 btn-primary btn-lg">
+       Create a Comment
+     </button></a>
+   <div>
+     {% if user.is_authenticated %}
+     <a class="btn" href="/logout">Logout</a>
+     {% else %}
+     <a class="btn" href="/signup">Sign Up</a>
+     {% endif %}
+
+   </div>
+
+ </div>

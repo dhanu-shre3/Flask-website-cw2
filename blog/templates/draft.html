@@ -1,0 +1,16 @@
+{% extends "blogpost1.html" %}
+
+{% block footer %}
+<p>Comment</p>
+<form name="Comment">
+    <textarea name="comment" rows="6" placeholder="Your Comment"></textarea>
+
+    <button type="submit" class="btn btn2">Submit</button>
+    
+    <a class="nav-item nav-link" href="/logout">Logout</a>
+
+    <button type="submit" class="btn btn2"><a href="{{ url_for('login') }}">Login</a></button>
+    <button type="submit" class="btn btn2"><a href="{{ url_for('signup') }}">Signup</a></button>
+
+</form>
+{% endblock %}
