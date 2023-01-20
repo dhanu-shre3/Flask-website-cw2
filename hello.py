@@ -1,16 +1,16 @@
 from flask import Flask, render_template, url_for, redirect, request
 from flask_mail import Mail, Message
-from config import mail_password, mail_username
 
 app = Flask(__name__, static_folder="static")
-
+mail = Mail(app)
 
 app.config['MAIL_SERVER'] = "smtp.gmail.com"
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = mail_username
-app.config['MAIL_PASSWORD'] = mail_password
+app.config['MAIL_USERNAME'] = 'dssummers2424@gmail.com'
+app.config['MAIL_PASSWORD'] = 'trpxmsvwngtdhele'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config['TESTING'] = False
 
 
 mail = Mail(app)
@@ -41,7 +41,7 @@ def contact():
         email = request.form.get('email')
         message = request.form.get('message')
 
-        msg = Message(subject=f"Mail from {Name}", body=f" Name: {Name}\n E-Mail: {email}\n\n\n{message}", sender="dssummers2424@gmail.com", recipients=['dhanushree0424@gmail.com'])
+        msg = Message(subject=f"Mail from {Name}", body=f" Name: {Name}\n E-Mail: {email}\n\n\n{message}", sender=email, recipients=['dhanushree0424@gmail.com'])
         mail.send(msg)
         return render_template("contact.html", success=True)
 
@@ -58,3 +58,8 @@ def login():
 @app.route("/signup")
 def login():
     return render_template('signup.html', title='signup')    
+
+@app.route("/create_post")
+def create_post():
+    return render_template('create_post.html', title='post')        
+

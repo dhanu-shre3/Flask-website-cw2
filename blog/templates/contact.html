@@ -5,31 +5,35 @@
         <div class="row">
             <div class="contact-left">
                 <h1 class="sub-title">Contact Me</h1>
-                <p><i class="fa-solid fa-paper-plane"></i>dhanushree0424@gmail.com</p>
+                <p><i class="fa-solid fa-paper-plane"></i><a href="mailto:email@example.com">dhanushree0424@gmail.com</a></p>
                 <div class="social-icons">
-                    <a href=""><i class="fa-brands fa-linkedin"></i></a>
-                    <a href=""><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/dhanushreemsomaiah/"><i class="fa-brands fa-linkedin"></i></a>
+
+                    <a href="https://github.com/dhanu-shre3"><i class="fa-brands fa-github"></i></a>
                 </div>
                 <a href="static/images/Dhanushree-SomaiahCV.pdf" download class="btn btn2">Download CV</a>
             </div>
             <div class="contact-right">
                 <p>Want to get in touch? Fill out the form below and I will get back to you as soon as possible.</p>
-                {% if success%}
-                <p>Message sent successfully!</p>
-                {% endif%}
-                <form name="setMessage" methods="POST">
-                    <input type="text" name="Name" placeholder="Your Name"  required data-validation-required-message="Please enter your name.">
+                <form action="{{url_for('contact')}}" name="setMessage" method="POST">
+                    <input type="text" name="name" placeholder="Your Name"  required data-validation-required-message="Please enter your name.">
+                    
                     <input type="email" name="email" placeholder="Your email"  required data-validation-required-message="Please enter your email address.">
-                    <textarea name="message" rows="6" placeholder="Your Message"  required data-validation-required-message="Please enter your message."></textarea>
-                    <button type="submit" class="btn btn2">Submit</button>
+                    
+                    <textarea type="text" name="message" rows="6" placeholder="Your Message"  required data-validation-required-message="Please enter your message."></textarea>
+                    
+                    <button type="submit"  class="btn btn2">Submit</button>
                 </form>
+                {% if success %}
+                <p>Message sent successfuly</p>
+                {% endif %}
             </div>
 
             
         </div>
     </div>
     <div class="copyright">
-        <p>Made with  by Dhanushree </p>
+        <p>Made with <3 by Dhanushree </p>
     </div>
  </div>
 

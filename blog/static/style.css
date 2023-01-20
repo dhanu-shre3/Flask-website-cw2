@@ -368,3 +368,7 @@ form btn2{
     margin: 20px 0;
     text-align: justify;
 }
+
+figcaption{
+    font-size: 12px;
+}

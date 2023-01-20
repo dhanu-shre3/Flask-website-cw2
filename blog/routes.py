@@ -1,12 +1,14 @@
 from flask import Flask, render_template, url_for, redirect, request, Blueprint, flash
 from blog import app
+from flask_mail import Mail, Message
+from . import mail
 from . import db
 from .models import Post, User
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-
+mail = Mail(app)
 
 @app.route("/")
 
@@ -26,21 +28,39 @@ def portfolio():
 def blog():
     return render_template('blog.html', title='Blog')    
 
+# -----------------------------flask-mail-------------
+
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+
+        msg = Message(subject=f"Mail from {name}", body=f" Name: {name}\n E-Mail: {email}\n\nMessage: {message}", sender=email, recipients=['dhanushree0424@gmail.com'])
+        mail.send(msg)
+        return render_template("contact.html", success=True)
+
     return render_template('contact.html', title='contact')    
 
 
 @app.route("/blogpost1")
-# @login_required
 def blogpost1():
     return render_template('blogpost1.html',  title='BlogPost')    
+
+@app.route("/blogpost2")
+def blogpost2():
+    return render_template('blogpost2.html',  title='BlogPost')    
+
+@app.route("/blogpost3")
+def blogpost3():
+    return render_template('blogpost3.html',  title='BlogPost')    
 
 @app.route("/draft")
 def draft():
     return render_template('draft.html', title='draft')    
 
-
+# -------------------------------login---------------
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -101,9 +121,11 @@ def logout():
     logout_user()
     return redirect(url_for("comment"))
 
+# -----------------comments-------------------
+
 @app.route("/comment")
 def comment():
-    posts = Post.query.all()
+    posts =Post.query.all()
     return render_template("comment.html", user=current_user, post=posts)
 
 
