@@ -1,8 +1,8 @@
-# Flask-website-coursework2
+# CMT120 Coursework 2 - Dynamic Website-coursework2
 <h1>Digital Portfolio - Flaskapp</h1>
 
 
-<h2>URL of my website on Openshift server</h2>
+<h2>URL of the website on Openshift server</h2>
 http://c-21114732-cmt-120-cw-2-git-c21114732-cmt120-cw22.apps.openshift.cs.cf.ac.uk
 
 <h2>Overview</h2>
@@ -15,30 +15,100 @@ Digital Portfolio with Flask framework
 <li>Websites rich in links to other resourceful pages like GitHub, GitHub pages, LinkedIn, and mail</li>
 </ul>
 
-<h3>Comment features</h3>
-Example email that is already on the database:
+## Local Development (Empty Site)
 
-email: cakes@gmail.com <br>
-password: 1234567
+> Creates a fresh local instance with an empty database.
+
+### 1) Create & activate a virtual environment
+
+**Windows (PowerShell)**
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+````
+
+**Windows (cmd.exe)**
+
+```bat
+python -m venv venv
+.\venv\Scripts\activate.bat
+```
+
+**macOS / Linux (POSIX)**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 2) Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3) Initialize the database
+
+```bash
+python db_creation.py
+```
+
+Follow the prompts:
+
+* Press **Enter** to confirm creation.
+* Set an **Admin password** (used to create the initial Admin account).
+
+### 4) Run the app
+
+**Option A — via Flask**
+
+```bash
+# Windows (PowerShell)
+set FLASK_APP=wsgi.py
+flask run
+
+# macOS / Linux
+export FLASK_APP=wsgi.py
+flask run
+```
+
+**Option B — directly**
+
+```bash
+python wsgi.py
+```
+
+---
+
+## Remote Deployment
+
+### Prerequisites (environment variables)
+
+Inject these into your runtime (container/orchestrator):
+
+* `ENV_TYPE` — `PROD` or `STAGING`
+* `MYSQL_ADDRESS` — MySQL host (e.g., `db:3306` or `127.0.0.1:3306`)
+* `MYSQL_DB_NAME` — database name
+* `MYSQL_USER` — database user
+* `MYSQL_PASSWORD` — database user password
+
+> The app expects **MySQL**. Other engines can work by changing the SQLAlchemy **dialect + driver** in `cfg.py` (e.g., `postgresql+psycopg2://…`). Ensure the environment variables are set and the final Database URI is correct (check logs if unsure).
+
+### Initial setup (first deploy)
+
+On the deployment container shell:
+
+```bash
+python db_creation.py
+```
+
+Verify the printed **address** and **name** match your target DB, press **Enter** to confirm, then choose the **Admin password** when prompted.
+
+### Start the service
+
+Restart/redeploy your service or pod to begin serving the application.
 
 
-<h2>Key Functionality</h2>
-<ul>
-<li>werkzeug.security
-Used to hash passwords, which encodes the existing password to store them securely. </li>
-
-<li>DB connection processing in SQLAlchemy</li>
-
-<li>Flask-Login - user session management
-Easily remember logins, logouts and sessions</li>
-
-<li>Flask-Mail
-Sets up SMTP connection to send messages through flask application</li>
-
-<li>Pagination functionality using Flask-SQLAlchemy</li>
-
-<li>Downloading files using the Download attribute – CV file</li>
-</ul>
 
 <h2>References</h2>
 <blockquote>Pallets. (2007)<i> ‘Werkzeug Utilities’. </i>Available at: https://werkzeug.palletsprojects.com/en/2.2.x/utils/#module-werkzeug.security [Accessed on: 19 January 2023]</blockquote>
