@@ -47,11 +47,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3) Initialize the database
-
-```bash
-python db_creation.py
-```
 
 Follow the prompts:
 
@@ -92,21 +87,6 @@ Inject these into your runtime (container/orchestrator):
 * `MYSQL_USER` — database user
 * `MYSQL_PASSWORD` — database user password
 
-> The app expects **MySQL**. Other engines can work by changing the SQLAlchemy **dialect + driver** in `cfg.py` (e.g., `postgresql+psycopg2://…`). Ensure the environment variables are set and the final Database URI is correct (check logs if unsure).
-
-### Initial setup (first deploy)
-
-On the deployment container shell:
-
-```bash
-python db_creation.py
-```
-
-Verify the printed **address** and **name** match your target DB, press **Enter** to confirm, then choose the **Admin password** when prompted.
-
-### Start the service
-
-Restart/redeploy your service or pod to begin serving the application.
 
 
 
